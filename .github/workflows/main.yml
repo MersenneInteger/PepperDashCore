@@ -11,6 +11,9 @@ jobs:
     name: Build
     runs-on: self-hosted
     steps:
-      - run: Invoke-WebRequest -URI "http://localhost:8080/job/PepperDash%20Core%20Branch%20Builds/build" -Credential "ndorin:11d9b22977192c9070b31f5b8e359934bc" -method POST
-        env:
-          token: ${{ secrets.TOKEN }}
+      - run: $namePair = "ndorin:${{ secrets.TOKEN }}"
+      - run: $pairBytes = [System.Text.Encoding]::ASCII.GetBytes($namePair)
+      - run: $base64 = [System.Convert]::ToBase64String($pairBytes)
+      - run: $basicAuthValue = "Basic $base64"
+      - run: $headers = @{Authorization=$basicAuthValue}
+      - run: Invoke-WebRequest -URI "http://localhost:8080/job/PepperDash%20Core%20Branch%20Builds/build?token=${{ secrets.TOKEN }}" -Headers $headers -Method POST
