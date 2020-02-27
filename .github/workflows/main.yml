@@ -12,5 +12,5 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: Trigger Jenkins Job
-        uses: actions/checkout@v2
-        run: Invoke-WebRequest -URI "http://localhost:8080/job/PepperDash%20Core%20Branch%20Builds/build" -credentials "ndorin:${{ secrets.TOKEN }}" -method POST
+      - uses: actions/checkout@v2
+      - run: Invoke-WebRequest -URI "http://localhost:8080/job/PepperDash%20Core%20Branch%20Builds/build" -credentials "ndorin:${{ secrets.TOKEN }}" -method POST
