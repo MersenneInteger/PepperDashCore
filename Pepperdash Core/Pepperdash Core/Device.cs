@@ -33,7 +33,7 @@ namespace PepperDash.Core
         ///// </summary>
         //public bool HasConfig { get { return Config != null; } }
 
-		List<Action> _PreActivationActions;
+		List<Action> _preActivationActions;
 		List<Action> _PostActivationActions;
 
 		public static Device DefaultDevice { get { return _DefaultDevice; } }
@@ -65,9 +65,9 @@ namespace PepperDash.Core
 
 		public void AddPreActivationAction(Action act)
 		{
-			if (_PreActivationActions == null)
-				_PreActivationActions = new List<Action>();
-			_PreActivationActions.Add(act);
+			if (_preActivationActions == null)
+				_preActivationActions = new List<Action>();
+			_preActivationActions.Add(act);
 		}
 
 		public void AddPostActivationAction(Action act)
@@ -79,8 +79,8 @@ namespace PepperDash.Core
 
         public void PreActivate()
         {
-            if (_PreActivationActions != null)
-                _PreActivationActions.ForEach(a => a.Invoke());
+            if (_preActivationActions != null)
+                _preActivationActions.ForEach(a => a.Invoke());
         }
 
 		/// <summary>
