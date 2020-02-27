@@ -16,4 +16,4 @@ jobs:
       - run: $base64 = [System.Convert]::ToBase64String($pairBytes)
       - run: $basicAuthValue = "Basic $base64"
       - run: $headers = @{Authorization=$basicAuthValue}
-      - run: Invoke-WebRequest -URI "http://localhost:8080/job/PepperDash%20Core%20Branch%20Builds/build?token=${{ secrets.TOKEN }}" -Headers $headers -Method POST
+      - run: Invoke-WebRequest -URI "http://localhost:8080/job/PepperDash%20Core%20Branch%20Builds/build?token=${{ secrets.TOKEN }}" -Headers @{Authorization = "Basic [System.Convert]::ToBase64String([System.Text.Encoding]::GetBytes("ndorin:${{ secrets.TOKEN }}"))} -Method POST
