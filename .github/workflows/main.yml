@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - feature/*
-      - bugfix/*
+      - hotfix/*
 
 jobs:
   build:
@@ -13,7 +13,7 @@ jobs:
     steps:
       - run: $env.token
       - run: $env.projecttoken
-      - run: Invoke-WebRequest -URI "http://localhost:8080/job/PepperDash%20Core%20Branch%20Builds/build?token=$($ env.projecttoken )" -Headers @{Authorization = "Basic $([System.Convert]::ToBase64String([System.Text.Encoding]::ASCII.GetBytes("ndorin:$($env.token)")))"} -Method POST -UseBasicParsing
+      - run: Invoke-WebRequest -URI "http://localhost:8080/job/PepperDash%20Core%20Branch%20Builds/build?token=$($env.projecttoken)" -Headers @{Authorization = "Basic $([System.Convert]::ToBase64String([System.Text.Encoding]::ASCII.GetBytes("ndorin:$($env.token)")))"} -Method POST -UseBasicParsing
         env:
           token: ${{ secrets.TOKEN }}
-          projectoken: ${{ secrets.PROJECTTOKEN }}
+          projecttoken: ${{ secrets.PROJECTTOKEN }}
