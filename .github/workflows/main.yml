@@ -1,10 +1,11 @@
-name: Build Branch
+name: Build Non-Release Branch
 
 on:
   push:
     branches:
       - feature/*
       - hotfix/*
+      - bugfix/*
 
 jobs:
   build:
